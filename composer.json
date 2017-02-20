@@ -1,0 +1,18 @@
+{
+    "name": "paygenius/integration-sample",
+    "authors": [
+        {
+            "name": "William Brooks",
+            "email": "wbrooks@methys.com"
+        }
+    ],
+    "require": {
+        "inacho/php-credit-card-validator": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PayGenius\\": "lib/PayGenius/src",
+            "PayGenius\\Sample\\": "classes"
+        }
+    }
+}
