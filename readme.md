@@ -25,7 +25,7 @@ return [
 | secret | The provided secret key |
 | endpoint | The api endpoint (see Endpoints below) |
 | log | Where to log api request/responses. If set to `true`, it will log to the standard PHP error log. If a filename is provided, it will log to that file. |
-| baseurl | The base URL for the project (incl. the trailing '/') |
+| baseurl | The base URL for the project (incl. the trailing `/`) |
 
 ### Endpoints
 
@@ -34,12 +34,29 @@ return [
 | Testing | https://developer.paygenius.co.za/pg/api/v2 |
 | Production | https://www.paygenius.co.za/pg/api/v2 |
 
-## General Payment Process
+
+## Page Descriptions
+
+| Page | Description |
+| - | - |
+| `validate.php` | Used to validate the API details |
+| `card-info.php` | Collect the user's credit card information |
+| `card-auth.php` | Creates the credit card payment, and handles the 3D secure form |
+| `card-3ds.php` | Handles the 3D secure response |
+| `card-execute.php` | Executes the credit card payment |
+| `eft-info.php` | Collect's the user's information for instant eft |
+| `eft-init.php` | Sets up the Instant EFT process |
+| `hosted-info.php` | Collect's the user's information for hosted payment pages |
+| `hosted-init.php` | Sets up the hosted payment page |
+| `transaction-complete.php` | Shows the transaction status when one of the payment processes have completed |
+| `error-page.php` | Used by the exception handler to show exception information |
+
+## General Credit Card Payment Process
 
 Successful payment process flow (see code for errors):
 
 ```
-card-info.php ---POST---> card-auth.php ---NO3DS ------------------------------------------------------------------------------REDIRECT---> card-execute.php
+card-info.php ---POST---> card-auth.php ---NO3DS -----------------------------------------------------------------------------REDIRECT---> card-execute.php ---REDIRECT---> transaction-complete.php
                                         \--3DS---FORMPOST---> card-3ds.php ---POST---> [BANKSERV] ---POST ---> card-3ds.php /
 ```
 
