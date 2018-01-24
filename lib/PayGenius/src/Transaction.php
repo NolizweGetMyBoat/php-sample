@@ -41,7 +41,7 @@ class Transaction implements Validateable
 
         if (Util\Validation::isEmpty($this->currency)) {
             $errors['currency'] = 'Missing';
-        } elseif ($this->currency !== 'ZAR') {
+        } elseif (!in_array($this->currency, ['ZAR','USD','EUR'])) {
             $errors['curreny'] = 'Invalid';
         }
 
