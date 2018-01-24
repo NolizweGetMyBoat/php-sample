@@ -32,7 +32,17 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Amount</label>
-                <input type="text" name="transaction[amount]" placeholder="Amount (ZAR)" class="form-control"/>
+                <input type="text" name="transaction[amount]" placeholder="Amount" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Currency</label>
+                <select name="transaction[currency]" class="form-control">
+                  <option value="ZAR">ZAR</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+   		</select>
             </div>
         </div>
         <h3>Card Information</h3>

@@ -22,7 +22,7 @@ $transactionAmount    = trim($_POST['transaction']['amount']);
 $consumerFirstname    = trim($_POST['consumer']['firstname']);
 $consumerLastname     = trim($_POST['consumer']['lastname']);
 $consumerEmail        = trim($_POST['consumer']['email']);
-
+$currency             = trim($_POST['transaction']['currency']);
 ########################################################################################################################
 # Create Payyment Request
 ########################################################################################################################
@@ -30,7 +30,7 @@ $consumerEmail        = trim($_POST['consumer']['email']);
 $client = PayGeniusClientFactory::create();
 
 $creditCard  = new CreditCard($cardNumber, $cardHolder, $cardExpiryYear, $cardExpiryMonth, $cardCvv, $cardType);
-$transaction = new Transaction($transactionReference, 'ZAR', round($transactionAmount * 100));
+$transaction = new Transaction($transactionReference, $currency, round($transactionAmount * 100));
 $consumer    = new Consumer($consumerFirstname, $consumerLastname, $consumerEmail);
 
 $request = new CreatePaymentRequest($creditCard, $transaction, $consumer);
